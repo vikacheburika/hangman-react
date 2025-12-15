@@ -1,17 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {useState} from "react";
+
+import Header from "./components/Header/Header.jsx"
+import Picture from "./components/Picture/Picture.jsx"
+import Button from "./components/Button/Button.jsx"
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [step, setStep] = useState(0);
+
+  const handleClick = () => {
+    setStep(step => step + 1);
+  };
 
   return (
+    <>
+      <Header/>
+      
+      <Picture step={step} />
 
-      <div>
-        <h1>Hangman</h1>
-      </div>
-  )
+      <Button onClick={handleClick} />
+      </>
+  );
 }
 
-export default App
+export default App;

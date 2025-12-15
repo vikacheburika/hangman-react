@@ -1,0 +1,8 @@
+.button-wrong {
+    height: 200px;
+    width: 200px;
+    background-color: rgb(182, 44, 67);
+    color: white;
+    display: inline-block;
+    text-align: center;
+}
