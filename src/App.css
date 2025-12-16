@@ -1,4 +1,14 @@
 body {
     background-color: rgb(220, 111, 129);
+    /* display: flex;
+    justify-content: space-evenly; */
+}
 
+.wrong {
+    box-sizing: border-box;
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    right: 25vw;
+    top: 250px;
 }

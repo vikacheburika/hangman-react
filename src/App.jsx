@@ -7,10 +7,16 @@ import Button from "./components/Button/Button.jsx"
 import './App.css'
 
 function App() {
+  const maxClicks = 11;
   const [step, setStep] = useState(0);
 
   const handleClick = () => {
-    setStep(step => step + 1);
+    setStep(step => {
+      if (step + 1 >= maxClicks){
+        return 0;
+      }
+      return step + 1;
+    });
   };
 
   return (
@@ -18,8 +24,10 @@ function App() {
       <Header/>
       
       <Picture step={step} />
-
-      <Button onClick={handleClick} />
+      <div className="wrong">
+        <Button onClick={handleClick} />
+      </div>
+      
       </>
   );
 }
