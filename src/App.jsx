@@ -21,7 +21,7 @@ function App() {
 
   return (
     <>
-      <Header/>
+      <Header name="stranger" content="learning"/>
       
       <Picture step={step} />
       <div className="wrong">
