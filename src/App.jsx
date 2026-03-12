@@ -2,34 +2,20 @@ import {useState} from "react";
 
 import Header from "./components/Header/Header.jsx"
 import Picture from "./components/Picture/Picture.jsx"
-import Button from "./components/Button/Button.jsx"
+import Keyboard from "./components/Keyboard/Keyboard.jsx"
 
 import './App.css'
 
-function App() {
-  const maxClicks = 11;
-  const [step, setStep] = useState(0);
-
-  const handleClick = () => {
-    setStep(step => {
-      if (step + 1 >= maxClicks){
-        return 0;
-      }
-      return step + 1;
-    });
-  };
-
-  return (
+function App({step}) {
+  
+  return(
     <>
-      <Header name="stranger" content="learning"/>
+    <Header name="stranger" content="learning"/>
       
-      <Picture step={step} />
-      <div className="wrong">
-        <Button onClick={handleClick} />
-      </div>
       
-      </>
-  );
+      <Keyboard/>
+    </>
+  )
 }
 
 export default App;

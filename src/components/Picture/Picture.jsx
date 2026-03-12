@@ -1,4 +1,5 @@
 import "./Picture.css";
+
 import kartuves0 from "../../assets/images/kartuves_0.png";
 import kartuves1 from "../../assets/images/kartuves_1.png";
 import kartuves2 from "../../assets/images/kartuves_2.png";
