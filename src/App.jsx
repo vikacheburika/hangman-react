@@ -13,10 +13,12 @@ function App({step}) {
     <>
     <Header name="stranger" content="learning"/>
       
-      
+      <div className="content">
       <Keyboard/>
 
       <Word/>
+      </div>
+      
     </>
   )
 }

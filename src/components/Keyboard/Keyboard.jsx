@@ -7,6 +7,7 @@ function Keyboard() {
   const [step, setStep] = useState(0);
 
   const handleClick = () => {
+    
     setStep(step => {
       if (step + 1 >= maxClicks){
         return 0;

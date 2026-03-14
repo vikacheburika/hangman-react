@@ -1,14 +1,31 @@
 body {
     background-color: rgb(220, 111, 129);
-    /* display: flex;
-    justify-content: space-evenly; */
+
+}
+
+.content {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    align-items: center;
 }
 
 .wrong {
     box-sizing: border-box;
     height: 200px;
     width: 200px;
-    position: absolute;
-    right: 25vw;
-    top: 250px;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    padding: 35px;
+}
+.picture-main {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 50%;
+}
+
+.word-box {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    margin: 35px;
 }
