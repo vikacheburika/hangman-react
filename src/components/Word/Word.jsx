@@ -6,7 +6,8 @@ function Word() {
   const [word, setWord] = useState("");
 
   const handleLoad = () => {
-    const randomIndex = Math.floor(Math.random() * 2);
+    // const randomIndex = Math.floor(Math.random() * 2);
+    
     const selectedWord = words[randomIndex];
     const letters = selectedWord.split("").map((char) => ({
       answer: char,
@@ -40,7 +41,7 @@ function Word() {
   return (
     <>
       <div className="word-box">
-        <button onClick={handleLoad}>load the word</button>
+        <button type="button" class="btn btn-primary" onClick={handleLoad}>load the word</button>
         {display()}
       </div>
 
