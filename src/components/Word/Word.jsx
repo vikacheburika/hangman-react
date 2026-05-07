@@ -1,14 +1,42 @@
 import { useState } from "react";
-import words from "../../assets/wordbank/words.js";
+import { useEffect } from "react";
+import words from "../../utilities/words.js";
 import Letters from "../Letters/Letters.jsx";
+import axios from "axios";
 
 function Word() {
   const [word, setWord] = useState("");
 
+  const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        // Make GET request to fetch data
+        axios
+            .get("https://random-word-api.herokuapp.com/word?length=5&?diff=1")
+            .then((response) => {
+              console.log("OK");
+              
+                setData(response.data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+                
+                setError(err.message);
+                setLoading(false);
+            });
+    }, []);
+
+    // if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
   const handleLoad = () => {
-    // const randomIndex = Math.floor(Math.random() * 2);
     
-    const selectedWord = words[randomIndex];
+
+    const selectedWord = data;
+    
     const letters = selectedWord.split("").map((char) => ({
       answer: char,
       isGuessed: false,
@@ -41,7 +69,7 @@ function Word() {
   return (
     <>
       <div className="word-box">
-        <button type="button" class="btn btn-primary" onClick={handleLoad}>load the word</button>
+        <button type="button" className="btn btn-primary" onClick={handleLoad}>load the word</button>
         {display()}
       </div>
 

@@ -1,6 +1,7 @@
 import Button from "../Button/Button.jsx"
 import {useState} from "react";
 import Picture from "../Picture/Picture.jsx"
+import qwertyLetterKeys from "../../utilities/keys.js";
 
 function Keyboard() {
   const maxClicks = 11;
@@ -16,6 +17,8 @@ function Keyboard() {
     });
   };
 
+
+
   return (
     <>
       
@@ -23,6 +26,12 @@ function Keyboard() {
 
       <div className="wrong">
         <Button onClick={handleClick} />
+      </div>
+
+      <div className="keyboard">
+        {qwertyLetterKeys.map((letter, index) => (
+          <button key={index} type="button" className="btn btn-danger" >{letter}</button>
+        ))}
       </div>
       
       </>
