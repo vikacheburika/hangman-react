@@ -14,7 +14,7 @@ function Word() {
     useEffect(() => {
         // Make GET request to fetch data
         axios
-            .get("https://random-word-api.herokuapp.com/word?length=5&?diff=1")
+            .get("https://random-word-api.herokuapp.com/word?length=5&diff=1")
             .then((response) => {
               console.log("OK");
               
@@ -35,7 +35,8 @@ function Word() {
   const handleLoad = () => {
     
 
-    const selectedWord = data;
+    const selectedWord = data[0];
+    console.log(selectedWord)
     
     const letters = selectedWord.split("").map((char) => ({
       answer: char,
@@ -79,3 +80,6 @@ function Word() {
 }
 
 export default Word;
+
+
+

@@ -2,10 +2,15 @@ import Button from "../Button/Button.jsx"
 import {useState} from "react";
 import Picture from "../Picture/Picture.jsx"
 import qwertyLetterKeys from "../../utilities/keys.js";
+// import { data } from "../Word/Word.jsx";
 
 function Keyboard() {
   const maxClicks = 11;
   const [step, setStep] = useState(0);
+
+  // const handleButton = (letter) => {
+    
+  // }
 
   const handleClick = () => {
     
@@ -30,7 +35,7 @@ function Keyboard() {
 
       <div className="keyboard">
         {qwertyLetterKeys.map((letter, index) => (
-          <button key={index} type="button" className="btn btn-danger" >{letter}</button>
+          <button key={index} type="button" className="btn btn-danger" onClick={() => handleButton(letter)}>{letter}</button>
         ))}
       </div>
       
