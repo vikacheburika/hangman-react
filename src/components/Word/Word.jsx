@@ -4,52 +4,57 @@ import words from "../../utilities/words.js";
 import Letters from "../Letters/Letters.jsx";
 import axios from "axios";
 
-function Word() {
+function Word({getWord}) {
   const [word, setWord] = useState("");
 
   const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    
     useEffect(() => {
         // Make GET request to fetch data
-        axios
+        
+    }, []);
+
+    // if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
+  async function handleLoad(){
+    axios
             .get("https://random-word-api.herokuapp.com/word?length=5&diff=1")
             .then((response) => {
-              console.log("OK");
-              
-                setData(response.data);
+                console.log("OK");
                 setLoading(false);
+                let selectedWord = response.data[0];
+                console.log(selectedWord);
+                
+                const letters = selectedWord.split("").map((char) => ({
+                  answer: char,
+                  isGuessed: false,
+                }));
+
+                getWord(letters);
+                setWord(selectedWord)
+                
             })
             .catch((err) => {
                 console.log(err);
                 
                 setError(err.message);
                 setLoading(false);
-            });
-    }, []);
-
-    // if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
-
-  const handleLoad = () => {
+    });
     
-
-    const selectedWord = data[0];
-    console.log(selectedWord)
     
-    const letters = selectedWord.split("").map((char) => ({
-      answer: char,
-      isGuessed: false,
-    }));
-
-    setWord(letters)
   };
 
   function getDisplayChar(index) {
     const letterObj = word[index];
+    
+    
     return letterObj && letterObj.isGuessed ? letterObj.answer : "_";
 }
+
+
 
   function display() {
     
@@ -79,7 +84,8 @@ function Word() {
   );
 }
 
-export default Word;
+
+export {Word} ;
 
 
 

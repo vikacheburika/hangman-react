@@ -4,13 +4,21 @@ import Picture from "../Picture/Picture.jsx"
 import qwertyLetterKeys from "../../utilities/keys.js";
 // import { data } from "../Word/Word.jsx";
 
-function Keyboard() {
+
+function Keyboard({compare}) {
   const maxClicks = 11;
   const [step, setStep] = useState(0);
 
-  // const handleButton = (letter) => {
-    
-  // }
+  const handleButton = (letter) => {
+    console.log("OK");
+                                                                                                                                                                                                                          
+    compare.forEach((el) => {
+      
+      if (el.answer == letter) {
+        el.isGuessed = true;
+      }
+    })
+  }
 
   const handleClick = () => {
     
@@ -32,6 +40,7 @@ function Keyboard() {
       <div className="wrong">
         <Button onClick={handleClick} />
       </div>
+
 
       <div className="keyboard">
         {qwertyLetterKeys.map((letter, index) => (
