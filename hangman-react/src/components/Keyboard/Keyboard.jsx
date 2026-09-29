@@ -2,7 +2,6 @@ import Button from "../Button/Button.jsx"
 import {useState} from "react";
 import Picture from "../Picture/Picture.jsx"
 import qwertyLetterKeys from "../../utilities/keys.js";
-// import { data } from "../Word/Word.jsx";
 
 
 function Keyboard({compare, guessedOne, setGuessedOne, setGuessedTwo, setGuessedThree, setGuessedFour, setGuessedFive}) {
@@ -45,11 +44,9 @@ function Keyboard({compare, guessedOne, setGuessedOne, setGuessedTwo, setGuessed
           break;
         default:
           console.log("i am compare foreach and i am aware of my existence")
-      }
-        // el.isGuessed = true;
+        }
       }
       else{
-        // handleClick();
         falsy+=1;
       }
     })

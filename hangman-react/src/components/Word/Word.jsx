@@ -1,26 +1,5 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import words from "../../utilities/words.js";
-import axios from "axios";
 
-function Word({ loading, getWord, guessedOne, guessedTwo,  guessedThree, guessedFour, guessedFive, word, handleLoad}) {
-  
-
-  const [data, setData] = useState([]);
-  
-  const [error, setError] = useState(null);
-  
-
-// Function that is called on click of Load the word button, sets the word
-  
-
-// FUnction that depending on if the letter is guessed or not either returns it or "-"
-  // function getDisplayChar(index) {
-  //   const letterObj = word[index];
-  //   console.log(letterObj + " miau");
-    
-  //   return letterObj && letterObj.isGuessed ? letterObj.answer : "_";
-  // }
+function Word({ loading, word, handleLoad}) {
 
   function display() {
     return (

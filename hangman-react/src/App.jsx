@@ -16,11 +16,11 @@ function App({ step }) {
   const [guessedThree, setGuessedThree] = useState(false);
   const [guessedFour, setGuessedFour] = useState(false);
   const [guessedFive, setGuessedFive] = useState(false);
-  // const axios = require('axios');
 
   const [loading, setLoading] = useState(true);
   const [word, setWord] = useState([]);
 
+  //Separate variable for word(state var) to solve timing issue
   let selectedWord;
 
   class Letter {
@@ -30,13 +30,21 @@ function App({ step }) {
     }
   }
 
+  // Set answer with extra steps tool ??
+  function getWord(word) {
+    setAnswer(word);
+    console.log("result of setAnswer: " + answer);
+  }
+
+  // Word state updater so that it updates separately from rendering
   useEffect(() => {
     const updated = word;
     setAnswer(updated);
   }, [word]);
 
+  // Letters' states logic so that they update separately from rendering
   useEffect(() => {
-    if (!word || word.length === 0) console.log("useffect nono do");
+    if (!word || word.length === 0) console.log("useffect not activated");
     else {
       const letterStates = [
         guessedOne,
@@ -54,6 +62,7 @@ function App({ step }) {
     }
   }, [guessedOne, guessedTwo, guessedThree, guessedFour, guessedFive]);
 
+  // Getting word from API 
   async function handleLoad() {
             await axios.get("https://random-word-api.herokuapp.com/word?length=5&diff=1")
             .then((response) => {
@@ -78,10 +87,13 @@ function App({ step }) {
                 setLoading(false);
     });
 
+    // To not display loading note
     setLoading(false);
-    // let selectedWord = "amana";
+
+    // Test, making sure
     console.log(selectedWord);
 
+    // Assigning letters values
     const letters = selectedWord.split("").map((char, inx) => {
       switch (inx) {
         case 0:
@@ -98,51 +110,17 @@ function App({ step }) {
           return null;
       }
 
-      // switch(inx) {
-      //   case 0:
-      //     return {
-      //       answer: char,
-      //       isGuessed: guessedOne,
-      //     };
-      //   case 1:
-      //     return {
-      //       answer: char,
-      //       isGuessed: guessedTwo,
-      //     };
-      //   case 2:
-      //     return {
-      //       answer: char,
-      //       isGuessed: guessedThree,
-      //     };
-      //   case 3:
-      //     return {
-      //       answer: char,
-      //       isGuessed: guessedFour,
-      //     };
-      //   case 4:
-      //     return {
-      //       answer: char,
-      //       isGuessed: guessedFive,
-      //     };
-      //   default:
-      //     return null;
-      // }
-
-      // answer: char,
-      // isGuessed: false,
     });
 
     console.log("this is result of map nd class: " + letters);
     letters.forEach((letter) => console.log(letter));
 
+    // Making word an array ?
     setWord(letters);
+    // ?
     getWord(word);
   }
 
-  function getWord(word) {
-    setAnswer(word);
-    console.log("result of setAnswer: " + answer);
-  }
 
   return (
     <>
