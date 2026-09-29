@@ -5,6 +5,10 @@ import qwertyLetterKeys from "../../utilities/keys.js";
 
 
 function Keyboard({compare, guessedOne, setGuessedOne, setGuessedTwo, setGuessedThree, setGuessedFour, setGuessedFive}) {
+
+  let usedKeys = [];
+  let letterKeys = qwertyLetterKeys.slice();
+
   const maxClicks = 11;
   const [step, setStep] = useState(0);
 
@@ -49,18 +53,33 @@ function Keyboard({compare, guessedOne, setGuessedOne, setGuessedTwo, setGuessed
       else{
         falsy+=1;
       }
+
     })
     console.log(falsy);
+    console.log(usedKeys);
+    
     
     if (falsy == 5) {
       handleClick();
     }
     console.log("this is after press key: "+guessedOne);
-    
+
   }
 
+  // Used keys deleter
+  const deleteUsed = (inx, el) => {
+    console.log("Delete Used works");
 
+    // Remove element from keyboard
+    letterKeys.splice(inx, 1);
+    // Add to Used Keys
+    usedKeys.push(el);
 
+    console.log(letterKeys);
+    console.log(usedKeys);
+    
+    
+  }
 
 
   return (
@@ -74,8 +93,11 @@ function Keyboard({compare, guessedOne, setGuessedOne, setGuessedTwo, setGuessed
 
 
       <div className="keyboard">
-        {qwertyLetterKeys.map((letter, index) => (
-          <button key={index} type="button" className="btn btn-danger" onClick={() => handleButton(letter)}>{letter}</button>
+        {letterKeys.map((letter, index) => (
+          <button key={index} type="button" className="btn btn-danger" onClick={() => {
+            handleButton(letter); 
+            deleteUsed(index, letter);
+          }}>{letter}</button>
         ))}
       </div>
       
