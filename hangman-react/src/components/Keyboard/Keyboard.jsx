@@ -7,7 +7,9 @@ import qwertyLetterKeys from "../../utilities/keys.js";
 function Keyboard({compare, guessedOne, setGuessedOne, setGuessedTwo, setGuessedThree, setGuessedFour, setGuessedFive}) {
 
   let usedKeys = [];
-  let letterKeys = qwertyLetterKeys.slice();
+  let keys = qwertyLetterKeys.slice();
+  const [letterKeys, setLetterKeys] = useState(keys);
+  
 
   const maxClicks = 11;
   const [step, setStep] = useState(0);
@@ -70,17 +72,19 @@ function Keyboard({compare, guessedOne, setGuessedOne, setGuessedTwo, setGuessed
   const deleteUsed = (inx, el) => {
     console.log("Delete Used works");
 
-    // Remove element from keyboard
-    letterKeys.splice(inx, 1);
-    // Add to Used Keys
-    usedKeys.push(el);
+    setLetterKeys(letterKeys => {
+      // Remove element from keyboard
+      letterKeys.splice(inx, 1);
+      // Add to Used Keys
+      usedKeys.push(el);
 
-    console.log(letterKeys);
-    console.log(usedKeys);
-    
+      console.log(letterKeys);
+      console.log(usedKeys);
+
+      return letterKeys;
+    }) 
     
   }
-
 
   return (
     <>
