@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import Header from "./components/Header/Header.jsx";
-import Picture from "./components/Picture/Picture.jsx";
 import Keyboard from "./components/Keyboard/Keyboard.jsx";
+import UsedKeys from "./components/UsedKeys/UsedKeys.jsx";
 import { Word } from "./components/Word/Word.jsx";
 import { useEffect } from "react";
 
@@ -20,6 +20,9 @@ function App({ step }) {
   const [loading, setLoading] = useState(true);
   const [word, setWord] = useState([]);
 
+  
+  const [usedKeys, setUsedKeys] = useState([]);
+  
   //Separate variable for word(state var) to solve timing issue
   let selectedWord;
 
@@ -135,6 +138,12 @@ function App({ step }) {
           setGuessedThree={setGuessedThree}
           setGuessedFour={setGuessedFour}
           setGuessedFive={setGuessedFive}
+          usedKeys={usedKeys}
+          setUsedKeys = {setUsedKeys}
+        />
+
+        <UsedKeys
+          meow = {usedKeys}
         />
 
         <Word
