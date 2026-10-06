@@ -20,9 +20,8 @@ function App({ step }) {
   const [loading, setLoading] = useState(true);
   const [word, setWord] = useState([]);
 
-  
   const [usedKeys, setUsedKeys] = useState([]);
-  
+
   //Separate variable for word(state var) to solve timing issue
   let selectedWord;
 
@@ -65,33 +64,33 @@ function App({ step }) {
     }
   }, [guessedOne, guessedTwo, guessedThree, guessedFour, guessedFive]);
 
-  // Getting word from API 
+  // Getting word from API
   async function handleLoad() {
-            // console.log("Word is loading....");
-            
-            await axios.get("https://random-word-api.herokuapp.com/word?length=5&diff=1")
-            .then((response) => {
-                console.log("axios OK");
-                setLoading(false);
-                selectedWord = response.data[0];
-                console.log("selected word in axios: ",selectedWord);
+    // console.log("Word is loading....");
 
-                const letters = selectedWord.split("").map((char) => ({
-                  answer: char,
-                  isGuessed: false,
-                }));
+    await axios
+      .get("https://random-word-api.herokuapp.com/word?length=5&diff=1")
+      .then((response) => {
+        console.log("axios OK");
+        setLoading(false);
+        selectedWord = response.data[0];
+        console.log("selected word in axios: ", selectedWord);
 
-                getWord(letters);
-                setWord(selectedWord);
+        const letters = selectedWord.split("").map((char) => ({
+          answer: char,
+          isGuessed: false,
+        }));
 
-            })
-            .catch((err) => {
-                console.log(err);
+        getWord(letters);
+        setWord(selectedWord);
+      })
+      .catch((err) => {
+        console.log(err);
 
-                setError(err.message);
-                setLoading(false);
-    }).finally(() => {
-    });
+        setError(err.message);
+        setLoading(false);
+      })
+      .finally(() => {});
 
     // To not display loading note
     setLoading(false);
@@ -112,7 +111,6 @@ function App({ step }) {
         default:
           return null;
       }
-
     });
 
     // console.log("this is result of map nd class: " + letters);
@@ -123,7 +121,6 @@ function App({ step }) {
     // ?
     getWord(word);
   }
-
 
   return (
     <>
@@ -139,12 +136,10 @@ function App({ step }) {
           setGuessedFour={setGuessedFour}
           setGuessedFive={setGuessedFive}
           usedKeys={usedKeys}
-          setUsedKeys = {setUsedKeys}
+          setUsedKeys={setUsedKeys}
         />
 
-        <UsedKeys
-          meow = {usedKeys}
-        />
+        <UsedKeys meow={usedKeys} />
 
         <Word
           loading={loading}
