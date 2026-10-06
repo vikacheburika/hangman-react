@@ -69,10 +69,10 @@ function App({ step }) {
   async function handleLoad() {
             await axios.get("https://random-word-api.herokuapp.com/word?length=5&diff=1")
             .then((response) => {
-                console.log("OK");
+                console.log("axios OK");
                 setLoading(false);
                 selectedWord = response.data[0];
-                console.log(selectedWord);
+                console.log("selected word in axios: ",selectedWord);
 
                 const letters = selectedWord.split("").map((char) => ({
                   answer: char,
@@ -93,9 +93,6 @@ function App({ step }) {
     // To not display loading note
     setLoading(false);
 
-    // Test, making sure
-    console.log(selectedWord);
-
     // Assigning letters values
     const letters = selectedWord.split("").map((char, inx) => {
       switch (inx) {
@@ -115,7 +112,7 @@ function App({ step }) {
 
     });
 
-    console.log("this is result of map nd class: " + letters);
+    // console.log("this is result of map nd class: " + letters);
     letters.forEach((letter) => console.log(letter));
 
     // Making word an array ?

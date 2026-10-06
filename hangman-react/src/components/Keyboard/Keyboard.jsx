@@ -15,24 +15,16 @@ function Keyboard({compare, setGuessedOne, setGuessedTwo, setGuessedThree, setGu
 
   // Used keys deleter
   const deleteUsed = (inx, el) => {
-    console.log("Delete Used works");
 
     setLetterKeys(letterKeys => {
       // Remove element from keyboard
       letterKeys.splice(inx, 1);
 
-      console.log(letterKeys);
-      console.log(usedKeys);
-
-      console.log("i am set letter keys func");
-
       return letterKeys;
       
     }) 
-    console.log("NO OK")
       // Add to Used Keys
       setUsedKeys(usedKeys => {
-        console.log(usedKeys)
         return [...usedKeys, el]
       })
     
@@ -52,8 +44,6 @@ function Keyboard({compare, setGuessedOne, setGuessedTwo, setGuessedThree, setGu
   };
 
   const handleButton = (index, letter) => {
-    console.log("OK");
-    console.log(compare);
     let falsy = 0;
                                                                                                                                                                                                                           
     compare.forEach((el, inx) => {
@@ -84,7 +74,6 @@ function Keyboard({compare, setGuessedOne, setGuessedTwo, setGuessedThree, setGu
       }
 
     })
-    console.log(falsy);
     
     if (falsy == 5) {
       handleClick(index, letter);
