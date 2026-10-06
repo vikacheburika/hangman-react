@@ -28,16 +28,16 @@ function Keyboard({compare, setGuessedOne, setGuessedTwo, setGuessedThree, setGu
 
     setLetterKeys(letterKeys => {
       // Remove element from keyboard
-      letterKeys.splice(inx, 1);
-
-      return letterKeys;
+      
+      return letterKeys.filter((_, index) => index !== inx);
       
     })
+
+    console.log("deleteUsed > letterKeys", letterKeys);
   }
 
   // changes picture if guessed wrong
-  const handleClick = () => {
-    // deleteUsed(inx)
+  const nextPic = () => {
     
     setStep(step => {
       if (step + 1 >= maxClicks){
@@ -81,8 +81,8 @@ function Keyboard({compare, setGuessedOne, setGuessedTwo, setGuessedThree, setGu
     })
     
     if (falsy == 5) {
-      handleClick(index, letter);
-      addToUsed(index, letter )
+      nextPic(index, letter);
+      addToUsed(index, letter );
     }
 
     console.log("Keyboard: ", letterKeys);
@@ -95,7 +95,7 @@ function Keyboard({compare, setGuessedOne, setGuessedTwo, setGuessedThree, setGu
     <Picture step={step} />
 
       <div className="wrong">
-        <Button onClick={handleClick} />
+        <Button onClick={nextPic} />
       </div>
 
 

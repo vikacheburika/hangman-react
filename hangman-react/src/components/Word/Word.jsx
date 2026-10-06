@@ -15,10 +15,10 @@ function Word({ loading, word, handleLoad}) {
     <>
       <div className="word-box">
         <button type="button" className="btn btn-primary" onClick={handleLoad}>
-          load the word
+          Load the word
         </button>
         
-        {loading? "press button": display()}
+        {loading ? "press button": display()}
       </div>
     </>
   );

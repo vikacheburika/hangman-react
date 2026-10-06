@@ -67,6 +67,8 @@ function App({ step }) {
 
   // Getting word from API 
   async function handleLoad() {
+            // console.log("Word is loading....");
+            
             await axios.get("https://random-word-api.herokuapp.com/word?length=5&diff=1")
             .then((response) => {
                 console.log("axios OK");
@@ -88,6 +90,7 @@ function App({ step }) {
 
                 setError(err.message);
                 setLoading(false);
+    }).finally(() => {
     });
 
     // To not display loading note
