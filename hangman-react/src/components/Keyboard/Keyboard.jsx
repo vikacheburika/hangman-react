@@ -13,16 +13,9 @@ function Keyboard({compare, setGuessedOne, setGuessedTwo, setGuessedThree, setGu
   const maxClicks = 11;
   const [step, setStep] = useState(0);
 
-  // Used keys deleter
-  const deleteUsed = (inx, el) => {
+  // Used WRONG keys adder
+  const addToUsed = (inx, el) => {
 
-    setLetterKeys(letterKeys => {
-      // Remove element from keyboard
-      letterKeys.splice(inx, 1);
-
-      return letterKeys;
-      
-    }) 
       // Add to Used Keys
       setUsedKeys(usedKeys => {
         return [...usedKeys, el]
@@ -30,10 +23,21 @@ function Keyboard({compare, setGuessedOne, setGuessedTwo, setGuessedThree, setGu
     
   }
 
-  const handleClick = (inx, el) => {
-     // DELETE USED SIUDA
+  // used keys deleter 
+    const deleteUsed = (inx) => {
 
-    deleteUsed(inx, el)
+    setLetterKeys(letterKeys => {
+      // Remove element from keyboard
+      letterKeys.splice(inx, 1);
+
+      return letterKeys;
+      
+    })
+  }
+
+  // changes picture if guessed wrong
+  const handleClick = () => {
+    // deleteUsed(inx)
     
     setStep(step => {
       if (step + 1 >= maxClicks){
@@ -45,6 +49,8 @@ function Keyboard({compare, setGuessedOne, setGuessedTwo, setGuessedThree, setGu
 
   const handleButton = (index, letter) => {
     let falsy = 0;
+
+    deleteUsed(index);
                                                                                                                                                                                                                           
     compare.forEach((el, inx) => {
       
@@ -72,13 +78,15 @@ function Keyboard({compare, setGuessedOne, setGuessedTwo, setGuessedThree, setGu
       else{
         falsy+=1;
       }
-
     })
     
     if (falsy == 5) {
       handleClick(index, letter);
+      addToUsed(index, letter )
     }
 
+    console.log("Keyboard: ", letterKeys);
+    
   }
 
   return (
