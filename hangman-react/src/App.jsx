@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import Header from "./components/Header/Header.jsx";
-import Picture from "./components/Picture/Picture.jsx";
 import Keyboard from "./components/Keyboard/Keyboard.jsx";
+import UsedKeys from "./components/UsedKeys/UsedKeys.jsx";
 import { Word } from "./components/Word/Word.jsx";
 import { useEffect } from "react";
 
@@ -20,6 +20,9 @@ function App({ step }) {
   const [loading, setLoading] = useState(true);
   const [word, setWord] = useState([]);
 
+  
+  const [usedKeys, setUsedKeys] = useState([]);
+  
   //Separate variable for word(state var) to solve timing issue
   let selectedWord;
 
@@ -64,12 +67,14 @@ function App({ step }) {
 
   // Getting word from API 
   async function handleLoad() {
+            // console.log("Word is loading....");
+            
             await axios.get("https://random-word-api.herokuapp.com/word?length=5&diff=1")
             .then((response) => {
-                console.log("OK");
+                console.log("axios OK");
                 setLoading(false);
                 selectedWord = response.data[0];
-                console.log(selectedWord);
+                console.log("selected word in axios: ",selectedWord);
 
                 const letters = selectedWord.split("").map((char) => ({
                   answer: char,
@@ -85,13 +90,11 @@ function App({ step }) {
 
                 setError(err.message);
                 setLoading(false);
+    }).finally(() => {
     });
 
     // To not display loading note
     setLoading(false);
-
-    // Test, making sure
-    console.log(selectedWord);
 
     // Assigning letters values
     const letters = selectedWord.split("").map((char, inx) => {
@@ -112,7 +115,7 @@ function App({ step }) {
 
     });
 
-    console.log("this is result of map nd class: " + letters);
+    // console.log("this is result of map nd class: " + letters);
     letters.forEach((letter) => console.log(letter));
 
     // Making word an array ?
@@ -135,6 +138,12 @@ function App({ step }) {
           setGuessedThree={setGuessedThree}
           setGuessedFour={setGuessedFour}
           setGuessedFive={setGuessedFive}
+          usedKeys={usedKeys}
+          setUsedKeys = {setUsedKeys}
+        />
+
+        <UsedKeys
+          meow = {usedKeys}
         />
 
         <Word
